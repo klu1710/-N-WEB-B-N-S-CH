@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng ký tài khoản</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background: linear-gradient(to right, #4facfe, #00f2fe); display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <div style="background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
+    <h2 style="text-align: center; color: #333;">Đăng ký</h2>
+    <form action="register.php" method="POST">
+
+      <!-- Tên -->
+      <input type="text" name="ten" placeholder="Tên đầy đủ" required
+             style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+      <!-- Tên tài khoản -->
+      <input type="text" name="ten_tai_khoan" placeholder="Tên tài khoản" required
+             style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+      <!-- Email -->
+      <input type="email" name="email" placeholder="Email" required
+             style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+      <!-- Mật khẩu -->
+      <input type="password" name="mat_khau" placeholder="Mật khẩu" required
+             style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+      <!-- Xác nhận mật khẩu -->
+      <input type="password" name="mat_khau_confirm" placeholder="Xác nhận mật khẩu" required
+             style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;">
+
+      <!-- Nút Đăng ký -->
+      <button type="submit"
+              style="width: 100%; padding: 12px; background-color: #1e90ff; color: white; font-weight: bold; border: none; border-radius: 5px; margin-top: 15px; cursor: pointer;">
+        ĐĂNG KÝ
+      </button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">Đã có tài khoản? <a href="dn.html">Đăng nhập</a></p>
+  </div>
+</body>
+</html>

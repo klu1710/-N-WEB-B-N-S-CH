@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng Nhập</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif;">
+  <div style="display: flex; height: 100vh;">
+    <!-- Bên trái: Đăng ký -->
+    <div style="flex: 1; background: linear-gradient(to bottom right, #1e90ff, #1976d2); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; text-align: center;">
+      <h2 style="font-size: 26px;">Thành viên mới?</h2>
+      <p style="font-size: 16px; max-width: 300px; margin: 10px 0 20px;">Nếu bạn chưa có tài khoản. Hãy tạo ngay một tài khoản và tham gia cùng chúng tôi nào!</p>
+      <a href="dk.html" style="text-decoration: none; color: white; border: 2px solid white; padding: 10px 20px; border-radius: 25px; font-weight: bold;">ĐĂNG KÝ</a>
+      <img src="images/rocket.png" alt="Hình minh họa" style="width: 180px; margin-top: 30px;">
+    </div>
+
+    <!-- Bên phải: Đăng nhập -->
+    <div style="flex: 1; background-color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px;">
+      <h2 style="font-size: 26px; color: #333; margin-bottom: 30px;">Đăng nhập</h2>
+      <form action="login.php" method="POST" style="width: 100%; max-width: 320px;">
+        <!-- Tài khoản -->
+        <div style="position: relative; margin-bottom: 20px;">
+          <input type="text" name="username" placeholder="Tài khoản / Email / Điện thoại" required
+                 style="width: 100%; padding: 12px 12px 12px 20px; border: none; border-radius: 30px; background-color: #f0f0f0; font-size: 14px; outline: none;">
+        </div>
+
+        <!-- Mật khẩu -->
+        <div style="position: relative; margin-bottom: 20px;">
+          <input type="password" name="password" placeholder="Mật khẩu" required
+                 style="width: 100%; padding: 12px 12px 12px 20px; border: none; border-radius: 30px; background-color: #f0f0f0; font-size: 14px; outline: none;">
+        </div>
+
+        <!-- Nút đăng nhập -->
+        <button type="submit"
+                style="width: 100%; padding: 12px; background-color: #1e90ff; border: none; border-radius: 30px; color: white; font-weight: bold; font-size: 16px; cursor: pointer;">
+          ĐĂNG NHẬP
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+-- Tạo bảng nguoi_dung
+CREATE TABLE `nguoi_dung` (
+  `id_nguoi_dung` INT AUTO_INCREMENT PRIMARY KEY,
+  `ten_tk` varchar(100) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `mat_khau` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngay_tao` datetime DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT `chk_email` CHECK (email LIKE '%@%')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Bảng don_hang: cập nhật tên cột khóa ngoại cho đúng
+CREATE TABLE `don_hang` (
+  `ma_don_hang` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `id_nguoi_dung` INT DEFAULT NULL,
+  `ngay_dat` datetime DEFAULT CURRENT_TIMESTAMP,
+  `trang_thai` enum('cho_xu_ly','da_gui','da_nhan','huy') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tong_tien` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`ma_don_hang`),
+  KEY `id_nguoi_dung` (`id_nguoi_dung`),
+  CONSTRAINT `don_hang_ibfk_1` FOREIGN KEY (`id_nguoi_dung`) REFERENCES `nguoi_dung` (`id_nguoi_dung`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Các bảng còn lại không cần đổi nhiều, nhưng đảm bảo định nghĩa đúng
+CREATE TABLE `nxb` (
+  `ma_nxb` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_nxb` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `so_dien_thoai` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ma_nxb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `the_loai` (
+  `ma_the_loai` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_the_loai` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ma_the_loai`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `sach` (
+  `ma_sach` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_sach` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tac_gia` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gia` decimal(10,2) DEFAULT NULL,
+  `so_luong` int(11) DEFAULT NULL,
+  `mo_ta` text COLLATE utf8_unicode_ci,
+  `ma_the_loai` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ma_nxb` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh_bia` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ma_sach`),
+  KEY `ma_the_loai` (`ma_the_loai`),
+  KEY `ma_nxb` (`ma_nxb`),
+  CONSTRAINT `sach_ibfk_1` FOREIGN KEY (`ma_the_loai`) REFERENCES `the_loai` (`ma_the_loai`),
+  CONSTRAINT `sach_ibfk_2` FOREIGN KEY (`ma_nxb`) REFERENCES `nxb` (`ma_nxb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `chi_tiet_don_hang` (
+  `ma_chi_tiet` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_don_hang` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ma_sach` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `so_luong` int(11) DEFAULT NULL,
+  `gia` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`ma_chi_tiet`),
+  KEY `ma_don_hang` (`ma_don_hang`),
+  KEY `ma_sach` (`ma_sach`),
+  CONSTRAINT `chi_tiet_don_hang_ibfk_1` FOREIGN KEY (`ma_don_hang`) REFERENCES `don_hang` (`ma_don_hang`),
+  CONSTRAINT `chi_tiet_don_hang_ibfk_2` FOREIGN KEY (`ma_sach`) REFERENCES `sach` (`ma_sach`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

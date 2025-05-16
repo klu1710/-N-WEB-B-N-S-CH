@@ -1,0 +1,6 @@
+<?php
+session_start();
+session_destroy();  // Hủy session, đăng xuất người dùng
+header('Location: login.html');  // Chuyển hướng về trang đăng nhập
+exit;
+?>
